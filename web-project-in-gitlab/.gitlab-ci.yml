@@ -1,10 +1,11 @@
 stages:
     - build
     - deploy
+    - test
 build:
     stage: build
     script:
-        - mv /var/www/html/index.html /var/www/html/index_`date +%F%T`_backup.html
+        - mv /var/www/html/index.* /var/www/html/index_`date +%F%T`_backup.html
     tags:
         - run-4
 
@@ -15,3 +16,10 @@ deploy:
         - mv *.png /var/www/html/
     tags:
         - run-4
+test:
+    stage: test
+    script:
+        - curl -Isf http://localhost:80/index.html | head -1
+    tags:
+        - run-4
+
