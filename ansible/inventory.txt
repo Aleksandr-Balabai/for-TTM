@@ -1,0 +1,2 @@
+[basic_servers]
+instance-2      ansible_host=10.132.0.21

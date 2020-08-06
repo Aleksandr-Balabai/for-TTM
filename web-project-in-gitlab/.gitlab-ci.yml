@@ -1,0 +1,17 @@
+stages:
+    - build
+    - deploy
+build:
+    stage: build
+    script:
+        - mv /var/www/html/index.html /var/www/html/index_`date +%F%T`_backup.html
+    tags:
+        - run-4
+
+deploy:
+    stage: deploy
+    script:
+        - mv index.html /var/www/html/
+        - mv *.png /var/www/html/
+    tags:
+        - run-4
